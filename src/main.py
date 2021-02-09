@@ -21,34 +21,43 @@ list_query = """
                                 """
 delete_query = """
                                 DELETE FROM Person 
-                                WHERE name = 'Schneier, Bruce';
-                                """
+                                WHERE phone = '12345';  """
+
+# Pass your computer password to the pw variable
+pw = '11213141'
+
 
 def run():
 
     print('in main')
 
-    # Pass your computer password to the pw variable
-    pw = '11213141'
+    # Create connection to server and create db in it
     connection = Database.create_server_connection("localhost", "root", pw)
     Database.create_database(connection, creat_db_query)
-    #
-    # # Creating Tables
+
+    # # Create connection to db and create table
     connection = Database.create_db_connection("localhost", "root", pw, 'mydb')
     Database.execute_query(connection, create_person_table)
-    #
+
+
+def addPerson():
+    print('In addPerson')
     # # Add some data¶
     connection = Database.create_db_connection("localhost", "root", pw, 'mydb')
     Database.execute_query(connection, person_insert_query)
 
-    # Read
-    connection = Database.create_db_connection("localhost", "root", pw, 'mydb')
-    results = Database.read_query(connection, list_query)
-    Database.formatOutput(results)
-
+def delPerson():
+    print('In delPerson')
     # Deleting Records
     connection = Database.create_db_connection("localhost", "root", pw, 'mydb')
     Database.execute_query(connection, delete_query)
+    results = Database.read_query(connection, list_query)
+    Database.formatOutput(results)
+
+def listAll():
+    print('In listAll')
+    # Read
+    connection = Database.create_db_connection("localhost", "root", pw, 'mydb')
     results = Database.read_query(connection, list_query)
     Database.formatOutput(results)
 
