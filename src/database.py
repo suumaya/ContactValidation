@@ -82,7 +82,7 @@ class Database:
 
         columns = ["id","name", "phone", "address"]
         df = pd.DataFrame(from_db, columns=columns)
-        return df
+        print(df)
 
     if __name__ == "__main__":
         main.run()
