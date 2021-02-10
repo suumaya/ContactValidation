@@ -1,9 +1,8 @@
 import mysql.connector
 from mysql.connector import Error
 import pandas as pd
-from mysql.connector.cursor import MySQLCursorPrepared
+# from mysql.connector.cursor import MySQLCursorPrepared
 # import regex
-import main
 
 
 class Database:
@@ -93,12 +92,3 @@ class Database:
         columns = ["id","name", "phone", "address"]
         df = pd.DataFrame(from_db, columns=columns)
         print(df)
-
-    if __name__ == "__main__":
-        # One time:
-        main.run()
-        main.addPerson()
-
-        # # Many times:
-        main.listAll()
-        main.delPerson()
