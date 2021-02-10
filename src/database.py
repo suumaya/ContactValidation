@@ -1,6 +1,7 @@
 import mysql.connector
 from mysql.connector import Error
 import pandas as pd
+from mysql.connector.cursor import MySQLCursorPrepared
 # import regex
 import main
 
@@ -50,9 +51,18 @@ class Database:
 
     #Creating a Query Execution Function
     def execute_query(connection, query):
-        cursor = connection.cursor()
+        cursor = connection.cursor(prepared=True)
         try:
             cursor.execute(query)
+            connection.commit()
+            print("Query successful")
+        except Error as err:
+            print(f"Error: '{err}'")
+
+    def execute_add_query(connection, query,myvars):
+        cursor = connection.cursor(prepared=True)
+        try:
+            cursor.execute(query,myvars)
             connection.commit()
             print("Query successful")
         except Error as err:
@@ -85,7 +95,10 @@ class Database:
         print(df)
 
     if __name__ == "__main__":
+        # One time:
         main.run()
         main.addPerson()
+
+        # # Many times:
         main.listAll()
         main.delPerson()
