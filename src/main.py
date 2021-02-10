@@ -36,10 +36,11 @@ def addPerson():
 def delPerson():
     print('In delPerson')
     # Deleting Records
-    delete_query = """DELETE FROM Person WHERE phone = '12345';  """
+    delete_query = """DELETE FROM Person WHERE phone = ? ;  """
     list_query = """SELECT * FROM Person;"""
     connection = Database.create_db_connection("localhost", "root", pw, 'mydb')
-    Database.execute_query(connection, delete_query)
+    phone = input("Please enter your phone: ")
+    Database.execute_add_query(connection, delete_query,(phone,))
     results = Database.read_query(connection, list_query)
     Database.formatOutput(results)
 
