@@ -1,9 +1,8 @@
 from database import Database
-
+import re
 # Pass your computer password to the pw variable
 pw = '11213141'
 
-#
 def run():
     creat_db_query = "CREATE DATABASE mydb"
 
@@ -21,14 +20,27 @@ def run():
 
 
 def addPerson():
+    person_insert_query = "INSERT INTO Person (name,phone,address) VALUES(?,?,?);"
+    phone_regex = r'\+?\d{0,3}\s?\(?\d{1,5}\)?(-|.|\s)?\d{2,5}(-|.|\s)?\d{0,4}(-|.|\s)?\d{0,4}'
+    name_regex = r'^[A-Za-z]*$'
+    address_regex = r'^[A-Za-z]*$'
     # # Add some data¶
     connection = Database.create_db_connection("localhost", "root", pw, 'mydb')
     # #Take Valid Input from user
     name = input("Please enter your name: ")
-    phone = input("Please enter your phone: ")
-    address = input("Please enter your address: ")
-    person_insert_query = "INSERT INTO Person (name,phone,address) VALUES(?,?,?);"
-    Database.execute_add_query(connection, person_insert_query,(name, phone, address))
+    while not re.match(name_regex, name):
+        name = input("Oops! Please enter a valid name: ")
+    else:
+        phone = input("Please enter your phone: ")
+        while not re.match(phone_regex, phone):
+            phone = input("Oops! Please enter a valid phone number: ")
+        else:
+            address = input("Please enter your address: ")
+            while not re.match(address_regex, address):
+                address = input("Oops! Please enter a valid address: ")
+            else:
+                Database.execute_add_query(connection, person_insert_query,(name, phone, address))
+
     print('after execute')
 
 

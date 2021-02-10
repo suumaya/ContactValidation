@@ -6,7 +6,6 @@ if __name__ == "__main__":
     # # Many times:
 
 
-    # TODO: add list of applicable orders
     while True:
         x = input("""Please Select one of the following:
                   1. Add Person
