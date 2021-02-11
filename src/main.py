@@ -21,10 +21,17 @@ def run():
 
 def addPerson():
     person_insert_query = "INSERT INTO Person (name,phone,address) VALUES(?,?,?);"
-    phone_regex = r'\+?\d{0,3}\s?\(?\d{1,5}\)?(-|.|\s)?\d{2,5}(-|.|\s)?\d{0,4}(-|.|\s)?\d{0,4}'
-    name_regex = r'^[A-Za-z]*$'
+    # phone_regex = r'\+?\d{0,3}\s?\(?\d{1,5}\)?(-|.|\s)?\d{2,5}(-|.|\s)?\d{0,4}(-|.|\s)?\d{0,4}' #done
+    # phone_regex = r'[^a-zA-Z]\+?\d{0,3}(\s|-)?\(?\d{1,3}\)?(\.|\s)?\d{1,3}(-|\s)?\d?\s?\d{0,3}\s?\d{0,4}$'
+    phone_regex = ""
+    # name_regex = r'^[A-Za-z]*$'
+    # name_regex = r'^[a-zA-Z]+[a-zA-Z-\.\,\'\s]*[^0-9*<>;\/"]$'
+    # name_regex = r'^[\w\'?\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$'
     address_regex = r'^[A-Za-z]*$'
-    # # Add some data¶
+    name_regex = r'(([a-zA-Z]{2,})?(\s?[a-zA-Z]\'{1}[a-zA-Z]{2,})?\,?\s?([a-zA-Z]{2,})?(\-|\s)?[a-zA-Z]{0,}?\.?)$'
+    # [^<>;*]                       O'Malley, John F.
+
+                           # # Add some data¶
     connection = Database.create_db_connection("localhost", "root", pw, 'mydb')
     # #Take Valid Input from user
     name = input("Please enter your name: ")
@@ -68,3 +75,7 @@ def listAll():
     Database.formatOutput(results)
 
 
+def resetAll():
+    drob_db = """DROP DATABASE mydb;"""
+    connection = Database.create_db_connection("localhost", "root", pw, 'mydb')
+    Database.execute_query(connection, drob_db)

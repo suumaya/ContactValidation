@@ -1,6 +1,7 @@
 import main
 if __name__ == "__main__":
     # One time:
+    main.resetAll()
     main.run()
 
     # # Many times:
