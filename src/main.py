@@ -24,7 +24,7 @@ def addPerson():
     person_insert_query = "INSERT INTO Person (name,phone,address) VALUES(?,?,?);"
     address_regex = r'^[A-Za-z]*$'
     name_regex = r'(([a-zA-Z]{2,})?(\s?[a-zA-Z]\'{1}[a-zA-Z]{2,})?\,?\s?([a-zA-Z]{2,})?(\-|\s)?[a-zA-Z]{0,}?\.?)$'
-    phone_regex = r'^[+]{0,1}[1-9]{0,2}\s{0,1}[(]{0,1}(703){0,1}(21){0,1}[)]{0,1}\s{0,1}[-\s\.0-9]{5,}$'
+    phone_regex = r'^[+]{0,1}[1-3]{0,2}\s{0,1}(([(]{0,1}(703){0,1}[)])|([(]{0,1}(21){0,1}[)]){0,1})\s{0,1}[-\s\.0-6]{1}[-\s\.0-9]{4,}$'
 
 # #Take Valid Input from user
     name = input("Please enter your name: ")
