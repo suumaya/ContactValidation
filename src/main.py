@@ -20,20 +20,13 @@ def run():
 
 
 def addPerson():
+    connection = Database.create_db_connection("localhost", "root", pw, 'mydb')
     person_insert_query = "INSERT INTO Person (name,phone,address) VALUES(?,?,?);"
-    # phone_regex = r'\+?\d{0,3}\s?\(?\d{1,5}\)?(-|.|\s)?\d{2,5}(-|.|\s)?\d{0,4}(-|.|\s)?\d{0,4}' #done
-    # phone_regex = r'[^a-zA-Z]\+?\d{0,3}(\s|-)?\(?\d{1,3}\)?(\.|\s)?\d{1,3}(-|\s)?\d?\s?\d{0,3}\s?\d{0,4}$'
-    phone_regex = ""
-    # name_regex = r'^[A-Za-z]*$'
-    # name_regex = r'^[a-zA-Z]+[a-zA-Z-\.\,\'\s]*[^0-9*<>;\/"]$'
-    # name_regex = r'^[\w\'?\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$'
     address_regex = r'^[A-Za-z]*$'
     name_regex = r'(([a-zA-Z]{2,})?(\s?[a-zA-Z]\'{1}[a-zA-Z]{2,})?\,?\s?([a-zA-Z]{2,})?(\-|\s)?[a-zA-Z]{0,}?\.?)$'
-    # [^<>;*]                       O'Malley, John F.
+    phone_regex = r'^[+]{0,1}[1-9]{0,2}\s{0,1}[(]{0,1}(703){0,1}(21){0,1}[)]{0,1}\s{0,1}[-\s\.0-9]{5,}$'
 
-                           # # Add some data¶
-    connection = Database.create_db_connection("localhost", "root", pw, 'mydb')
-    # #Take Valid Input from user
+# #Take Valid Input from user
     name = input("Please enter your name: ")
     while not re.match(name_regex, name):
         name = input("Oops! Please enter a valid name: ")
