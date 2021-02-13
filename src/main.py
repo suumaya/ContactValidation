@@ -41,7 +41,7 @@ def addPerson():
             else:
                 Database.execute_add_query(connection, person_insert_query,(name, phone, address))
 
-    print('after execute')
+    # print('after execute')
 
 
 def delPerson(by_value):
