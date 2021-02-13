@@ -1,7 +1,7 @@
 from database import Database
 import re
 # Pass your computer password to the pw variable
-pw = '11213141'
+pw = 'mypassword'
 
 def run():
     creat_db_query = "CREATE DATABASE mydb"
