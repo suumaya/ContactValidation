@@ -23,8 +23,7 @@ def addPerson():
     connection = Database.create_db_connection("localhost", "root", pw, 'mydb')
     person_insert_query = "INSERT INTO Person (name,phone,address) VALUES(?,?,?);"
     name_regex = r'(([a-zA-Z]{2,})?(\s?[a-zA-Z]\'{1}[a-zA-Z]{2,})?\,?\s?([a-zA-Z]{2,})?(\-|\s)?[a-zA-Z]{0,}?\.?)$'
-    phone_regex = r'^[+]{0,1}[1-3]{0,2}\s{0,1}(([(]{0,1}(703){0,1}[)])|([(]{0,1}(21){0,1}[)]){0,1})\s{0,1}[-\s\.0-6]{1}[-\s\.0-9]{4,}$'
-
+    phone_regex = r'^[1-3]{0,1}([+][1-3]{1,2})?\s{0,1}(([(]{0,1}(703){0,1}[)])|([(]{0,1}(21){0,1}[)]){0,1})\s{0,1}[-\s\.0-6]{1}[-\s\.0-9]{4,}$'
     address_regex =  r'^[0-9]{3,4}[a-zA-Z]?\s[0-9]?[a-zA-Z]+\s[a-zA-Z]+\,?\s[a-zA-Z]*[#\s\d\]?\.?\,\s[a-zA-Z]+\,?\s[a-zA-Z]+\s?[0-9]{5}\-?[0-9]{0,4}'
 
     # #Take Valid Input from user
